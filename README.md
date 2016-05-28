@@ -63,7 +63,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`Sysrandom` aims to be API-compatible with Ruby's built-in `SecureRandom` class,
+but always prefers OS-level RNG wherever it's available:
+
+```ruby
+>> Sysrandom.random_number(42)
+=> 15
+>> Sysrandom.random_bytes(32)
+=> "\xD6J\xB3\xD2\x8B\x7F*9D\xB7\xF9\xEA\xE2\\\xAAH\tV#\xEC\x84\xE3E\r\x97\xB9\b\xFCH\x17\xA0\v"
+>> Sysrandom.base64(32)
+=> "WXPkxfAuLRpnI6Z4zFb4E+MIenx6w6vKhe01+rMPuIQ="
+>> Sysrandom.urlsafe_base64(32)
+=> "37rsMfR4X8g7Bb-uDJEekRHnB3r_7nO03cv52ilaWqE="
+>> Sysrandom.hex(32)
+=> "c950496ce200abf7d18eb1414e9206c6335f971a37d0394114f56439b59831ba"
+>> Sysrandom.uuid
+=> "391c6f52-8017-4838-9790-131a9b979c63"
+```
+
+* [SecureRandom API docs](http://ruby-doc.org/stdlib-2.0.0/libdoc/securerandom/rdoc/SecureRandom.html)
 
 ## Contributing
 
