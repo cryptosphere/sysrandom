@@ -1,2 +1,3 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'sysrandom'
+require "sysrandom"
+
+RSpec.configure(&:disable_monkey_patching!)
