@@ -14,7 +14,7 @@ Style/StringLiterals:
 Style/SpaceBeforeFirstArg:
   Enabled: false
 
-Style/GlobalVars:
+Style/ConditionalAssignment:
   Enabled: false
 
 #

@@ -22,19 +22,28 @@ cryptographic keys, initialization vectors, or nonces.
 
 The following random number generators are utilized:
 
-| OS      | RNG                                                 |
-|---------|-----------------------------------------------------|
-| Linux   | [getrandom(2)] if available, otherwise /dev/urandom |
-| Windows | [RtlGenRandom]                                      |
-| OpenBSD | [arc4random(3)] with ChaCha20 CSPRNG (not RC4)      |
-| Others  | [/dev/urandom]                                      |
+| OS      | RNG                                                               |
+|---------|-------------------------------------------------------------------|
+| Linux   | [getrandom(2)] if available, otherwise [/dev/urandom]             |
+| Windows | [RtlGenRandom]                                                    |
+| OpenBSD | [arc4random(3)] with ChaCha20 CSPRNG (not RC4)                    |
+| JRuby   | [SecureRandom.getInstanceStrong] if available, otherwise SHA1PRNG |
+| Others  | [/dev/urandom]                                                    |
 
 [concerns]:      https://bugs.ruby-lang.org/issues/9569
 [libsodium]:     https://github.com/jedisct1/libsodium
 [getrandom(2)]:  http://man7.org/linux/man-pages/man2/getrandom.2.html
+[/dev/urandom]:  http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
 [RtlGenRandom]:  https://msdn.microsoft.com/en-us/library/windows/desktop/aa387694(v=vs.85).aspx
 [arc4random(3)]: http://man.openbsd.org/arc4random.3
-[/dev/urandom]:  http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
+[SecureRandom.getInstanceStrong]: https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html#getInstanceStrong--
+
+## Supported Platforms
+
+Sysrandom is tested on the following Ruby implementations:
+
+* Ruby (MRI) 2.0, 2.1, 2.2, 2.3
+* JRuby 9.1.1.0
 
 ## Installation
 

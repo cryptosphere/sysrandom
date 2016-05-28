@@ -11,11 +11,12 @@ static VALUE Sysrandom_random_bytes(int argc, VALUE *argv, VALUE self);
 /* From randombytes_sysrandom.c */
 void __randombytes_sysrandom_buf(void * const buf, const size_t size);
 
-void Init_sysrandom()
+void Init_sysrandom_ext()
 {
     mSysrandom = rb_define_module("Sysrandom");
 
     rb_define_singleton_method(mSysrandom, "random_bytes", Sysrandom_random_bytes, -1);
+    rb_define_method(mSysrandom, "random_bytes", Sysrandom_random_bytes, -1);
 }
 
 /**
