@@ -1,6 +1,10 @@
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "sysrandom/version"
+
 Gem::Specification.new do |spec|
   spec.name          = "sysrandom"
-  spec.version       = "0.0.1"
+  spec.version       = Sysrandom::VERSION
   spec.authors       = ["Tony Arcieri"]
   spec.email         = ["bascule@gmail.com"]
 
@@ -14,5 +18,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.extensions = ["ext/sysrandom/extconf.rb"]
+  if defined? JRUBY_VERSION
+    spec.platform = "java"
+  else
+    spec.extensions = ["ext/sysrandom/extconf.rb"]
+  end
 end
