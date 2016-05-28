@@ -1,6 +1,23 @@
 require "spec_helper"
 
 RSpec.describe Sysrandom do
+  describe ".random_number" do
+    it "creates floats between 0..1 if no argument is given" do
+      n = described_class.random_number
+      expect(n).to be_a Float
+      expect(n).to be > 0
+      expect(n).to be < 1
+    end
+
+    it "returns a Fixnum if given a Fixnum as an argument" do
+      expect(described_class.random_number(42)).to be_a Fixnum
+    end
+
+    it "returns a Float if given a Float as an argument" do
+      expect(described_class.random_number(42.0)).to be_a Float
+    end
+  end
+
   describe ".random_bytes" do
     it "creates strings with random bytes" do
       string = described_class.random_bytes

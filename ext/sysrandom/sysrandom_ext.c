@@ -6,17 +6,35 @@
 
 static VALUE mSysrandom = Qnil;
 
+static VALUE Sysrandom_random_uint32(VALUE self);
 static VALUE Sysrandom_random_bytes(int argc, VALUE *argv, VALUE self);
 
 /* From randombytes_sysrandom.c */
+uint32_t __randombytes_sysrandom(void);
 void __randombytes_sysrandom_buf(void * const buf, const size_t size);
 
 void Init_sysrandom_ext()
 {
     mSysrandom = rb_define_module("Sysrandom");
 
+    rb_define_singleton_method(mSysrandom, "__random_uint32", Sysrandom_random_uint32, 0);
+    rb_define_method(mSysrandom, "__random_uint32", Sysrandom_random_uint32, 0);
+
     rb_define_singleton_method(mSysrandom, "random_bytes", Sysrandom_random_bytes, -1);
     rb_define_method(mSysrandom, "random_bytes", Sysrandom_random_bytes, -1);
+}
+
+/**
+ *  call-seq:
+ *    Sysrandom#__random_uint32 -> Fixnum
+ *
+ * Generates a random unsigned 32-bit integer using the OS CSPRNG
+ *
+ */
+static VALUE
+Sysrandom_random_uint32(VALUE self)
+{
+    return UINT2NUM(__randombytes_sysrandom());
 }
 
 /**

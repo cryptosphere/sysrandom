@@ -44,6 +44,12 @@ BOOLEAN NTAPI RtlGenRandom(PVOID RandomBuffer, ULONG RandomBufferLength);
 
 #ifdef HAVE_SAFE_ARC4RANDOM
 
+uint32_t
+__randombytes_sysrandom(void)
+{
+    return arc4random();
+}
+
 static void
 __randombytes_sysrandom_stir(void)
 {
@@ -254,6 +260,16 @@ __randombytes_sysrandom_buf(void * const buf, const size_t size)
         abort(); /* LCOV_EXCL_LINE */
     }
 #endif
+}
+
+uint32_t
+__randombytes_sysrandom(void)
+{
+    uint32_t r;
+
+    __randombytes_sysrandom_buf(&r, sizeof r);
+
+    return r;
 }
 
 #endif /* __OpenBSD__ */
