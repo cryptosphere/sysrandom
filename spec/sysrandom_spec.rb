@@ -41,4 +41,32 @@ RSpec.describe Sysrandom do
       expect(described_class.random_bytes(0)).to be_empty
     end
   end
+
+  describe ".base64" do
+    it "creates random base64 strings" do
+      base64 = described_class.base64(16)
+      expect(Base64.decode64(base64)).to be_a String
+    end
+  end
+
+  describe ".hex" do
+    it "creates random hexadecimal strings" do
+      hex = described_class.hex(16)
+      expect([hex].pack("h*")).to be_a String
+    end
+  end
+
+  describe ".urlsafe_base64" do
+    it "creates random urlsafe_base64 strings" do
+      base64 = described_class.urlsafe_base64(16)
+      expect(Base64.urlsafe_decode64(base64)).to be_a String
+    end
+  end
+
+  describe ".uuid" do
+    it "creates random UUIDs" do
+      uuid = described_class.uuid
+      expect(uuid).to match(/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}/)
+    end
+  end
 end
