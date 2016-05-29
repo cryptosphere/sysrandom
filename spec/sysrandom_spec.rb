@@ -37,7 +37,7 @@ RSpec.describe Sysrandom do
 
     # SecureRandom's wacky default string size
     it "creates strings of length 16 by default" do
-      expect(described_class.random_bytes.size).to eq 16 
+      expect(described_class.random_bytes.size).to eq 16
     end
 
     # SecureRandom compatibility
