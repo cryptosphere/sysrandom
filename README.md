@@ -31,13 +31,13 @@ cryptographic keys, initialization vectors, or nonces.
 
 The following random number generators are utilized:
 
-| OS      | RNG                                                               |
-|---------|-------------------------------------------------------------------|
-| Linux   | [getrandom(2)] if available, otherwise [/dev/urandom]             |
-| Windows | [RtlGenRandom]                                                    |
-| OpenBSD | [arc4random(3)] with ChaCha20 CSPRNG (not RC4)                    |
-| JRuby   | [SecureRandom.getInstanceStrong] if available, otherwise SHA1PRNG |
-| Others  | [/dev/urandom]                                                    |
+| Platform | RNG                                                   |
+|----------|-------------------------------------------------------|
+| Linux    | [getrandom(2)] if available, otherwise [/dev/urandom] |
+| Windows  | [RtlGenRandom]                                        |
+| OpenBSD  | [arc4random(3)] with ChaCha20 CSPRNG (not RC          |
+| JRuby    | [NativePRNGNonBlocking] on Java 8, otherwise SHA1PRNG |
+| Others   | [/dev/urandom]                                        |
 
 [emboss]:        https://emboss.github.io/blog/2013/08/21/openssl-prng-is-not-really-fork-safe/
 [bug]:           https://bugs.ruby-lang.org/issues/9569
@@ -46,7 +46,7 @@ The following random number generators are utilized:
 [/dev/urandom]:  http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
 [RtlGenRandom]:  https://msdn.microsoft.com/en-us/library/windows/desktop/aa387694(v=vs.85).aspx
 [arc4random(3)]: http://man.openbsd.org/arc4random.3
-[SecureRandom.getInstanceStrong]: https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html#getInstanceStrong--
+[NativePRNGNonBlocking]: https://tersesystems.com/2015/12/17/the-right-way-to-use-securerandom/
 
 ## Supported Platforms
 
