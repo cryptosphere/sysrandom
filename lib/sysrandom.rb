@@ -25,6 +25,7 @@ module Sysrandom
 
     def random_bytes(n = DEFAULT_LENGTH)
       raise ArgumentError, "negative string size" if n < 0
+      return false if n == 0
 
       bytes = Java::byte[n].new
       @_java_secure_random.nextBytes(bytes)
