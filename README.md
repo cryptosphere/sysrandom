@@ -83,6 +83,24 @@ but always prefers OS-level RNG wherever it's available:
 
 * [SecureRandom API docs](http://ruby-doc.org/stdlib-2.0.0/libdoc/securerandom/rdoc/SecureRandom.html)
 
+## Patching SecureRandom with Sysrandom
+
+Since Sysrandom is SecureRandom-compatible, it can be patched in-place of
+SecureRandom if you prefer its RNG behavior.
+
+To do this, require `sysrandom/securerandom`:
+
+```ruby
+>> SecureRandom
+=> SecureRandom
+>> require "sysrandom/securerandom"
+=> true
+>> SecureRandom
+=> Sysrandom
+>> SecureRandom.hex(32)
+=> "d1bbe8c1ab78fc2fe514c5623d913a27ffd2dcdc9e002f3b358bb01a996962f1"
+```
+
 ## Contributing
 
 * Fork this repository on Github

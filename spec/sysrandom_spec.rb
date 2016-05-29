@@ -1,6 +1,10 @@
 require "spec_helper"
 
 RSpec.describe Sysrandom do
+  it "has a version number" do
+    expect(Sysrandom::VERSION).not_to be nil
+  end
+
   describe ".random_number" do
     it "creates floats between 0..1 if no argument is given" do
       n = described_class.random_number
