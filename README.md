@@ -31,13 +31,13 @@ cryptographic keys, initialization vectors, or nonces.
 
 The following random number generators are utilized:
 
-| Platform | RNG                                                   |
-|----------|-------------------------------------------------------|
-| Linux    | [getrandom(2)] if available, otherwise [/dev/urandom] |
-| Windows  | [RtlGenRandom]                                        |
-| OpenBSD  | [arc4random(3)] with ChaCha20 CSPRNG (not RC4)        |
-| JRuby    | [NativePRNGNonBlocking] on Java 8, otherwise SHA1PRNG |
-| Others   | [/dev/urandom]                                        |
+| Platform | RNG                                                    |
+|----------|--------------------------------------------------------|
+| Linux    | [getrandom(2)] if available, otherwise [/dev/urandom]  |
+| Windows  | [RtlGenRandom] (CryptGenRandom without CryptoAPI deps) |
+| OpenBSD  | [arc4random(3)] with ChaCha20 CSPRNG (not RC4)         |
+| JRuby    | [NativePRNGNonBlocking] on Java 8, otherwise SHA1PRNG  |
+| Others   | [/dev/urandom]                                         |
 
 [emboss]:        https://emboss.github.io/blog/2013/08/21/openssl-prng-is-not-really-fork-safe/
 [bug]:           https://bugs.ruby-lang.org/issues/9569
