@@ -15,7 +15,9 @@ module Sysrandom
     if java.security.SecureRandom.respond_to?(:getInstanceStrong)
       @_java_secure_random = java.security.SecureRandom.getInstanceStrong
     else
-      @_java_secure_random = java.security.SecureRandom.getInstance("SHA1PRNG")
+      # Fall back to the legacy SecureRandom API if getInstanceStrong is unavailable
+      # See: https://www.cigital.com/blog/proper-use-of-javas-securerandom/
+      @_java_secure_random = java.security.SecureRandom.getInstance("SHA1PRNG", "SUN")
     end
 
     # Random uint32, used by random_number. The C extension provides an equivalent method
