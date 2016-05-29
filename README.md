@@ -34,7 +34,7 @@ The following random number generators are utilized:
 | Platform | RNG                                                    |
 |----------|--------------------------------------------------------|
 | Linux    | [getrandom(2)] if available, otherwise [/dev/urandom]  |
-| Windows  | [RtlGenRandom] (CryptGenRandom without CryptoAPI deps) |
+| Windows  | [RtlGenRandom] CryptGenRandom without CryptoAPI deps   |
 | OpenBSD  | [arc4random(3)] with ChaCha20 CSPRNG (not RC4)         |
 | JRuby    | [NativePRNGNonBlocking] on Java 8, otherwise SHA1PRNG  |
 | Others   | [/dev/urandom]                                         |
