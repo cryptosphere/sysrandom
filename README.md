@@ -6,10 +6,19 @@
 
 Secure random number generation for Ruby using system RNG facilities e.g. `/dev/urandom`, `getrandom(2)`
 
-## Description
+## Why?
 
-[Concerns have been raised][concerns] about the current implementation of Ruby's built-in
-`SecureRandom` functionality, as it presently leverages the poorly reputed OpenSSL RNG.
+System/OS-level random number generators like `/dev/urandom` and `getrandom(2)`
+provide the best option for generating cryptographically secure random numbers.
+
+Ruby's built-in SecureRandom does not provide this, but instead uses OpenSSL's
+userspace RNG. This has been a [source of vulnerabilities][emboss] in Ruby, and
+an [open Ruby bug ticket][bug] contains much discussion on the issue with no
+clear path to resolution.
+
+This gem aims to solve the problem.
+
+## Description
 
 In cryptography circles, [the prevailing advice is to use OS RNG functionality][/dev/urandom],
 namely `/dev/urandom` or equivalent calls which use an OS-level CSPRNG to
@@ -30,7 +39,8 @@ The following random number generators are utilized:
 | JRuby   | [SecureRandom.getInstanceStrong] if available, otherwise SHA1PRNG |
 | Others  | [/dev/urandom]                                                    |
 
-[concerns]:      https://bugs.ruby-lang.org/issues/9569
+[emboss]:        https://emboss.github.io/blog/2013/08/21/openssl-prng-is-not-really-fork-safe/
+[bug]:           https://bugs.ruby-lang.org/issues/9569
 [libsodium]:     https://github.com/jedisct1/libsodium
 [getrandom(2)]:  http://man7.org/linux/man-pages/man2/getrandom.2.html
 [/dev/urandom]:  http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
