@@ -70,7 +70,7 @@ Sysrandom_random_bytes(int argc, VALUE * argv, VALUE self)
         str = rb_str_new(0, n);
         __randombytes_sysrandom_buf(RSTRING_PTR(str), n);
     } else {
-        str = rb_str_new2("");
+        rb_raise(rb_eArgError, "string size is zero");
     }
 
     return str;
