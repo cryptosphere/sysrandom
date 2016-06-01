@@ -39,12 +39,6 @@ RSpec.describe Sysrandom do
     it "creates strings of length 16 by default" do
       expect(described_class.random_bytes.size).to eq 16
     end
-
-    # Incompatible with SecureRandom, but 0 should not return an emtpy string!
-    # if anyone /depends/ on that it's time to notice, especially when using this gem
-    it "returns false when given a length of 0" do
-      expect(described_class.random_bytes(0)).to be_falsey
-    end
   end
 
   describe ".base64" do
