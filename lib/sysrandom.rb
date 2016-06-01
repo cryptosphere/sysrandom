@@ -12,10 +12,13 @@ module Sysrandom
   if defined?(JRUBY_VERSION)
     require "java"
 
-    if java.security.SecureRandom.respond_to?(:getInstanceStrong)
-      @_java_secure_random = java.security.SecureRandom.getInstanceStrong
-    else
-      @_java_secure_random = java.security.SecureRandom.getInstance("SHA1PRNG")
+    begin
+      # Try to use the new NativePRNGNonBlocking algorithm introduced in Java 8.
+      @_java_secure_random = java.security.SecureRandom.getInstance("NativePRNGNonBlocking")
+    rescue
+      # If unavailable, fall back to the default configuration. This will
+      # probably be SHA1PRNG, but it depends on the JRE's configuration.
+      @_java_secure_random = java.security.SecureRandom.new
     end
 
     # Random uint32, used by random_number. The C extension provides an equivalent method
