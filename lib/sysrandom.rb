@@ -62,7 +62,7 @@ module Sysrandom
   end
 
   def uuid
-    values = SecureRandom.hex(16).match(/\A(.{8})(.{4})(.)(.{3})(.)(.{3})(.{12})\z/)
+    values = hex(16).match(/\A(.{8})(.{4})(.)(.{3})(.)(.{3})(.{12})\z/)
     "#{values[1]}-#{values[2]}-4#{values[4]}-#{'89ab'[values[5].ord % 4]}#{values[6]}-#{values[7]}"
   end
 end
