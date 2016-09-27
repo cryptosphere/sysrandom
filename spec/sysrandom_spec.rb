@@ -43,6 +43,40 @@ RSpec.describe Sysrandom do
     it "returns an empty string if zero bytes requested" do
       expect(described_class.random_bytes(0)).to eq ""
     end
+
+    it "generates a random binary string of specified length" do
+      (1..64).each do |idx|
+        bytes = described_class.random_bytes(idx)
+        expect(bytes).to be_a String
+        expect(bytes.size).to eq idx
+      end
+
+      expect(described_class.random_bytes(2.2).length).to eq(2)
+    end
+
+    it "generates different binary strings with subsequent invocations" do
+      # quick and dirty check, but good enough
+      values = []
+      256.times do
+        val = described_class.random_bytes
+        # make sure the random bytes are not repeating
+        expect(values.include?(val)).to be(false)
+        values << val
+      end
+    end
+
+    it "raises ArgumentError on negative arguments" do
+      expect { described_class.random_bytes(-1) }.to raise_error(ArgumentError, "negative string size")
+    end
+
+    it "calls to_int on the number passed as an arg" do
+      # jruby doesn't do this test
+      unless defined? JRUBY_VERSION
+        obj = double("to_int")
+        expect(obj).to receive(:to_int) { 5 }
+        expect(described_class.random_bytes(obj).size).to eq(5)
+      end
+    end
   end
 
   describe ".base64" do
