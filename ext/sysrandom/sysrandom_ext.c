@@ -45,7 +45,8 @@ Sysrandom_random_uint32(VALUE self)
  *
  * The argument n specifies how long the resulting string should be.
  *
- * For compatibility with SecureRandom, if n is not specified, 16 is assumed.
+ * For compatibility with SecureRandom, if n is not specified, 16 is assumed,
+ * and if n is 0, an empty string is returned.
  *
  * The resulting string may contain any byte (i.e. "x00" - "xff")
  *
@@ -70,7 +71,8 @@ Sysrandom_random_bytes(int argc, VALUE * argv, VALUE self)
         str = rb_str_new(0, n);
         __randombytes_sysrandom_buf(RSTRING_PTR(str), n);
     } else {
-        rb_raise(rb_eArgError, "string size is zero");
+        // n == 0, return empty string
+        str = rb_str_new(0, 0);
     }
 
     return str;
