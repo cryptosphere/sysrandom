@@ -39,6 +39,10 @@ RSpec.describe Sysrandom do
     it "creates strings of length 16 by default" do
       expect(described_class.random_bytes.size).to eq 16
     end
+
+    it "returns an empty string if zero bytes requested" do
+      expect(described_class.random_bytes(0)).to eq ""
+    end
   end
 
   describe ".base64" do
