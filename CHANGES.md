@@ -1,3 +1,9 @@
+## 1.0.3 (2016-09-27)
+
+* [#14](https://github.com/cryptosphere/sysrandom/pull/14)
+  Return empty string on random_bytes(0) as SecureRandom does.
+  ([@grempe])
+
 ## 1.0.2 (2016-06-06)
 
 * [#12](https://github.com/cryptosphere/sysrandom/pull/12)
@@ -27,3 +33,4 @@
 [@tarcieri]: https://github.com/tarcieri
 [@coda]: https://github.com/coda
 [@azet]: https://github.com/azet
+[@grempe]: https://github.com/grempe
