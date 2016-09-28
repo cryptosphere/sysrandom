@@ -1,8 +1,11 @@
-# Sysrandom
+# Sysrandom [![Gem Version][gem-image]][gem-link] [![Build Status][build-image]][build-link] [![ISC licensed][license-image]][license-link]
 
-[![Gem Version](https://badge.fury.io/rb/sysrandom.svg)](https://rubygems.org/gems/sysrandom)
-[![Build Status](https://secure.travis-ci.org/cryptosphere/sysrandom.svg?branch=master)](https://travis-ci.org/cryptosphere/sysrandom)
-[![ISC licensed](https://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/cryptosphere/sysrandom/blob/master/LICENSE.txt)
+[gem-image]: https://badge.fury.io/rb/sysrandom.svg
+[gem-link]: https://rubygems.org/gems/sysrandom
+[build-image]: https://secure.travis-ci.org/cryptosphere/sysrandom.svg?branch=master
+[build-link]: https://travis-ci.org/cryptosphere/sysrandom
+[license-image]: https://img.shields.io/badge/license-ISC-blue.svg
+[license-link]: https://github.com/cryptosphere/sysrandom/blob/master/LICENSE.txt
 
 Secure random number generation for Ruby using system RNG facilities e.g. `/dev/urandom`, `getrandom(2)`
 
