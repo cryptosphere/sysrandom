@@ -35,6 +35,10 @@ RSpec.describe Sysrandom do
       expect(described_class.random_bytes(42).size).to eq 42
     end
 
+    it "allows nil as a length argument" do
+      expect(described_class.random_bytes(nil).size).to eq 16
+    end
+
     # SecureRandom's wacky default string size
     it "creates strings of length 16 by default" do
       expect(described_class.random_bytes.size).to eq 16
@@ -94,8 +98,16 @@ RSpec.describe Sysrandom do
   end
 
   describe ".urlsafe_base64" do
-    it "creates random urlsafe_base64 strings" do
-      base64 = described_class.urlsafe_base64(16)
+    it "creates unpadded strings by default" do
+      expect(described_class.urlsafe_base64).not_to include("=")
+    end
+
+    it "optionally creates padded strings" do
+      expect(described_class.urlsafe_base64(nil, true)).to include("=")
+    end
+
+    it "creates valid urlsafe_base64 strings" do
+      base64 = described_class.urlsafe_base64(nil, true)
       expect(Base64.urlsafe_decode64(base64)).to be_a String
     end
   end

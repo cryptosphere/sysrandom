@@ -26,7 +26,8 @@ module Sysrandom
       @_java_secure_random.nextLong & 0xFFFFFFFF
     end
 
-    def random_bytes(n = DEFAULT_LENGTH)
+    def random_bytes(n = nil)
+      n ||= DEFAULT_LENGTH
       raise ArgumentError, "negative string size" if n < 0
       return "" if n == 0
 
@@ -49,15 +50,16 @@ module Sysrandom
     end
   end
 
-  def base64(n = DEFAULT_LENGTH)
+  def base64(n = nil)
     Base64.encode64(random_bytes(n)).chomp
   end
 
-  def urlsafe_base64(n = DEFAULT_LENGTH)
-    Base64.urlsafe_encode64(random_bytes(n)).chomp
+  def urlsafe_base64(n = nil, padding = false)
+    result = Base64.urlsafe_encode64(random_bytes(n)).chomp
+    padding ? result : result.tr("=", "")
   end
 
-  def hex(n = DEFAULT_LENGTH)
+  def hex(n = nil)
     random_bytes(n).unpack("h*").first
   end
 

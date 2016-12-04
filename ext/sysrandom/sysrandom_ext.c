@@ -58,10 +58,14 @@ Sysrandom_random_bytes(int argc, VALUE * argv, VALUE self)
     int n;
 
     if (rb_scan_args(argc, argv, "01", &n_obj) == 1) {
-        n = NUM2INT(n_obj);
+        if(n_obj == Qnil) {
+            n = DEFAULT_N_BYTES;
+        } else {
+            n = NUM2INT(n_obj);
 
-        if(n < 0) {
-          rb_raise(rb_eArgError, "negative string size");
+            if(n < 0) {
+              rb_raise(rb_eArgError, "negative string size");
+            }
         }
     } else {
         n = DEFAULT_N_BYTES;
