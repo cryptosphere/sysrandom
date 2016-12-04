@@ -1,3 +1,9 @@
+## 1.0.4 (2016-12-04)
+
+* [#15](https://github.com/cryptosphere/sysrandom/pull/16)
+  Argument handling fixups.
+  ([@tarcieri])
+
 ## 1.0.3 (2016-09-27)
 
 * [#14](https://github.com/cryptosphere/sysrandom/pull/14)
