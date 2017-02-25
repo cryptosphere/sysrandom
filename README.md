@@ -122,4 +122,4 @@ To do this, require `sysrandom/securerandom`:
 
 ## Copyright
 
-Copyright (c) 2013-2016 Frank Denis, Tony Arcieri. See LICENSE.txt for further details.
+Copyright (c) 2013-2017 Frank Denis, Tony Arcieri. See LICENSE.txt for further details.

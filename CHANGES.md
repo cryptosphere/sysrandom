@@ -1,3 +1,9 @@
+## 1.0.5 (2017-02-25)
+
+* [#19](https://github.com/cryptosphere/sysrandom/pull/19)
+  Replace Fixnum references with Integer.
+  ([@tarcieri])
+
 ## 1.0.4 (2016-12-04)
 
 * [#15](https://github.com/cryptosphere/sysrandom/pull/16)
@@ -7,7 +13,7 @@
 ## 1.0.3 (2016-09-27)
 
 * [#14](https://github.com/cryptosphere/sysrandom/pull/14)
-  Return empty string on random_bytes(0) as SecureRandom does.
+  Return empty string on `random_bytes(0)` as SecureRandom does.
   ([@grempe])
 
 ## 1.0.2 (2016-06-06)
