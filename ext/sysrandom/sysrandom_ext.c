@@ -26,7 +26,7 @@ void Init_sysrandom_ext()
 
 /**
  *  call-seq:
- *    Sysrandom#__random_uint32 -> Fixnum
+ *    Sysrandom#__random_uint32 -> Integer
  *
  * Generates a random unsigned 32-bit integer using the OS CSPRNG
  *
