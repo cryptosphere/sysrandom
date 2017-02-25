@@ -46,7 +46,7 @@ module Sysrandom
       result
     else
       result *= n
-      n.is_a?(Fixnum) ? result.floor : result
+      n.is_a?(Integer) ? result.floor : result
     end
   end
 

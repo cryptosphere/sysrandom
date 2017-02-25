@@ -13,8 +13,8 @@ RSpec.describe Sysrandom do
       expect(n).to be < 1
     end
 
-    it "returns a Fixnum if given a Fixnum as an argument" do
-      expect(described_class.random_number(42)).to be_a Fixnum
+    it "returns an Integer if given an Integer as an argument" do
+      expect(described_class.random_number(42)).to be_an Integer
     end
 
     it "returns a Float if given a Float as an argument" do
