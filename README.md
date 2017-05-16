@@ -16,8 +16,7 @@ provide the best option for generating cryptographically secure random numbers.
 
 Ruby's built-in SecureRandom does not provide this, but instead uses OpenSSL's
 userspace RNG. This has been a [source of vulnerabilities][emboss] in Ruby, and
-an [open Ruby bug ticket][bug] contains much discussion on the issue with no
-clear path to resolution.
+this [Ruby bug ticket][bug] contains more discussion on the issue.
 
 This gem aims to solve the problem.
 
